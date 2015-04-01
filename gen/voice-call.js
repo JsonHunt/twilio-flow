@@ -110,15 +110,21 @@
       if (!voice) {
         voice = this.app.settings.voice;
       }
-      return this.body.push({
-        Say: [
-          {
-            _attr: {
-              voice: voice
-            }
-          }, text
-        ]
-      });
+      if (this.app.prompt && this.app.prompt[text] && this.app.prompt[text].url) {
+        return this.body.push({
+          Play: this.app.voicePrompts[text].url
+        });
+      } else {
+        return this.body.push({
+          Say: [
+            {
+              _attr: {
+                voice: voice
+              }
+            }, text
+          ]
+        });
+      }
     };
 
     VoiceCall.prototype.play = function(url) {

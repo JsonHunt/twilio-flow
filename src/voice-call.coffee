@@ -73,12 +73,16 @@ class VoiceCall
 	say: (text,voice)->
 		if !voice
 			voice = @app.settings.voice
-		@body.push
-			Say: [
-				_attr:
-					voice: voice
-				,text
-			]			
+
+		if @app.prompt and @app.prompt[text] and @app.prompt[text].url
+			@body.push {Play: @app.voicePrompts[text].url}
+		else
+			@body.push
+				Say: [
+					_attr:
+						voice: voice
+					,text
+				]
 
 	play: (url)->
 		@body.push {Play: url}
