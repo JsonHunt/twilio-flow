@@ -77,8 +77,8 @@ class VoiceCall
 		console.log voice
 		@body.push
 			Say: text
-			_attr:
-				voice: voice
+				_attr:
+					voice: voice
 
 	play: (url)->
 		@body.push {Play: url}
