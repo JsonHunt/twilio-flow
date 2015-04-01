@@ -24,7 +24,6 @@ class VoiceCall
 			declaration:
 				encoding: 'UTF-8'
 		res.set('Content-Type', 'text/xml')
-		console.log xres
 		res.send xres
 
 	get: (req,value) ->
@@ -74,11 +73,12 @@ class VoiceCall
 	say: (text,voice)->
 		if !voice
 			voice = @app.settings.voice
-		console.log voice
 		@body.push
-			Say: text
+			Say: [
 				_attr:
 					voice: voice
+				,text
+			]			
 
 	play: (url)->
 		@body.push {Play: url}

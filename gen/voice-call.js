@@ -34,7 +34,6 @@
         }
       });
       res.set('Content-Type', 'text/xml');
-      console.log(xres);
       return res.send(xres);
     };
 
@@ -111,13 +110,14 @@
       if (!voice) {
         voice = this.app.settings.voice;
       }
-      console.log(voice);
       return this.body.push({
-        Say: text({
-          _attr: {
-            voice: voice
-          }
-        })
+        Say: [
+          {
+            _attr: {
+              voice: voice
+            }
+          }, text
+        ]
       });
     };
 
