@@ -113,10 +113,11 @@
       }
       console.log(voice);
       return this.body.push({
-        Say: text,
-        _attr: {
-          voice: voice
-        }
+        Say: text({
+          _attr: {
+            voice: voice
+          }
+        })
       });
     };
 
