@@ -45,7 +45,7 @@ class VoiceCall
 		@response = {Response: @body}
 		@res = res
 
-	acceptInput: (maxDigits, target)->
+	acceptInput: (maxDigits, target, required = true)->
 		gather = []
 		gather._attr =
 			action: target
@@ -53,9 +53,13 @@ class VoiceCall
 			timeout: @app.settings.timeout
 		@body.push {Gather: gather}
 		next = parseInt(@repeat)+1
-		@body.push {Say: @app.settings.noInputMessage}
-		@body.push {Redirect: "#{@position}?repeat=#{next}"}
+		if required
+			@body.push {Say: @app.settings.noInputMessage}
+			@body.push {Redirect: "#{@position}?repeat=#{next}"}
 		@body = gather
+
+	setTimeout: (timeout)->
+		@body._attr.timeout = timeout
 
 	recordSound: (target)->
 		@body.push
@@ -84,6 +88,7 @@ class VoiceCall
 						voice: voice
 					, toSay
 				]
+		@body.push {Pause:''}
 
 	play: (url)->
 		@body.push {Play: url}

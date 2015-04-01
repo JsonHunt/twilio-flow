@@ -18,3 +18,21 @@ describe 'Generated XML', ()=>
 		call.say "This is a test"
 		call.go()
 		console.log res.text
+
+	it 'has proper timeout', ()=>
+		call = new VoiceCall(app,res)
+		call.update(req,res)
+		call.acceptInput 1,'dupa'
+		call.setTimeout 200
+		call.say "This is dupa"
+		call.go()
+		console.log res.text
+
+	it 'respects required flag', ()=>
+		call = new VoiceCall(app,res)
+		call.update(req,res)
+		call.acceptInput 1,'dupa',false
+		call.setTimeout 200
+		call.say "This is dupa"
+		call.go()
+		console.log res.text

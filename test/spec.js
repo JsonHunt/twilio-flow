@@ -21,11 +21,31 @@
 
   describe('Generated XML', (function(_this) {
     return function() {
-      return it('has proper voice', function() {
+      it('has proper voice', function() {
         var call;
         call = new VoiceCall(app, res);
         call.update(req, res);
         call.say("This is a test");
+        call.go();
+        return console.log(res.text);
+      });
+      it('has proper timeout', function() {
+        var call;
+        call = new VoiceCall(app, res);
+        call.update(req, res);
+        call.acceptInput(1, 'dupa');
+        call.setTimeout(200);
+        call.say("This is dupa");
+        call.go();
+        return console.log(res.text);
+      });
+      return it('respects required flag', function() {
+        var call;
+        call = new VoiceCall(app, res);
+        call.update(req, res);
+        call.acceptInput(1, 'dupa', false);
+        call.setTimeout(200);
+        call.say("This is dupa");
         call.go();
         return console.log(res.text);
       });

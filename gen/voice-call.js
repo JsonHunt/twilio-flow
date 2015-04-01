@@ -65,8 +65,11 @@
       return this.res = res;
     };
 
-    VoiceCall.prototype.acceptInput = function(maxDigits, target) {
+    VoiceCall.prototype.acceptInput = function(maxDigits, target, required) {
       var gather, next;
+      if (required == null) {
+        required = true;
+      }
       gather = [];
       gather._attr = {
         action: target,
@@ -77,13 +80,19 @@
         Gather: gather
       });
       next = parseInt(this.repeat) + 1;
-      this.body.push({
-        Say: this.app.settings.noInputMessage
-      });
-      this.body.push({
-        Redirect: this.position + "?repeat=" + next
-      });
+      if (required) {
+        this.body.push({
+          Say: this.app.settings.noInputMessage
+        });
+        this.body.push({
+          Redirect: this.position + "?repeat=" + next
+        });
+      }
       return this.body = gather;
+    };
+
+    VoiceCall.prototype.setTimeout = function(timeout) {
+      return this.body._attr.timeout = timeout;
     };
 
     VoiceCall.prototype.recordSound = function(target) {
@@ -112,12 +121,12 @@
         voice = this.app.settings.voice;
       }
       if (prompt.url) {
-        return this.body.push({
+        this.body.push({
           Play: prompt.url
         });
       } else {
         toSay = prompt.text ? prompt.text : prompt;
-        return this.body.push({
+        this.body.push({
           Say: [
             {
               _attr: {
@@ -127,6 +136,9 @@
           ]
         });
       }
+      return this.body.push({
+        Pause: ''
+      });
     };
 
     VoiceCall.prototype.play = function(url) {
