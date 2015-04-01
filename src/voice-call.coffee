@@ -41,7 +41,7 @@ class VoiceCall
 		@recordingDuration = @get req, 'RecordingDuration'
 		@digits = @get req, 'Digits'
 		@status = @get req, 'CallStatus'
-		@duration @get req, 'CallDuration'
+		@duration = @get req, 'CallDuration'
 		@body = []
 		@response = {Response: @body}
 		@res = res

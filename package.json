@@ -1,6 +1,6 @@
 {
 	"name": "twilio-flow",
-	"version": "1.0.2",
+	"version": "1.0.4",
 	"description": "Makes writing twilio voice apps easier",
 	"main": "gen/twilio-flow.js",
 	"scripts": {

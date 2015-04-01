@@ -58,7 +58,7 @@
       this.recordingDuration = this.get(req, 'RecordingDuration');
       this.digits = this.get(req, 'Digits');
       this.status = this.get(req, 'CallStatus');
-      this.duration(this.get(req, 'CallDuration'));
+      this.duration = this.get(req, 'CallDuration');
       this.body = [];
       this.response = {
         Response: this.body
