@@ -70,18 +70,19 @@ class VoiceCall
 			Redirect: "#{@position}?repeat=#{next}"
 		@go()
 
-	say: (text,voice)->
+	say: (prompt,voice)->
 		if !voice
 			voice = @app.settings.voice
 
-		if @app.prompt and @app.prompt[text] and @app.prompt[text].url
-			@body.push {Play: @app.voicePrompts[text].url}
+		if prompt.url
+			@body.push {Play: prompt.url}
 		else
+			toSay = if prompt.text then prompt.text else prompt
 			@body.push
 				Say: [
 					_attr:
 						voice: voice
-					,text
+					, toSay
 				]
 
 	play: (url)->

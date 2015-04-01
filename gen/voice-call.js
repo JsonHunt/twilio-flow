@@ -106,22 +106,24 @@
       return this.go();
     };
 
-    VoiceCall.prototype.say = function(text, voice) {
+    VoiceCall.prototype.say = function(prompt, voice) {
+      var toSay;
       if (!voice) {
         voice = this.app.settings.voice;
       }
-      if (this.app.prompt && this.app.prompt[text] && this.app.prompt[text].url) {
+      if (prompt.url) {
         return this.body.push({
-          Play: this.app.voicePrompts[text].url
+          Play: prompt.url
         });
       } else {
+        toSay = prompt.text ? prompt.text : prompt;
         return this.body.push({
           Say: [
             {
               _attr: {
                 voice: voice
               }
-            }, text
+            }, toSay
           ]
         });
       }
