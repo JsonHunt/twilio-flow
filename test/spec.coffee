@@ -36,3 +36,12 @@ describe 'Generated XML', ()=>
 		call.say "This is dupa"
 		call.go()
 		console.log res.text
+
+	it 'puts go instructions outside of Gather tag', ()=>
+		call = new VoiceCall(app,res)
+		call.update(req,res)
+		call.acceptInput 1,'dupa',false
+		call.setTimeout 200
+		call.say "This is dupa"
+		call.goTo 'someplace else'
+		console.log res.text

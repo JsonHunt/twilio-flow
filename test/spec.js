@@ -39,7 +39,7 @@
         call.go();
         return console.log(res.text);
       });
-      return it('respects required flag', function() {
+      it('respects required flag', function() {
         var call;
         call = new VoiceCall(app, res);
         call.update(req, res);
@@ -47,6 +47,16 @@
         call.setTimeout(200);
         call.say("This is dupa");
         call.go();
+        return console.log(res.text);
+      });
+      return it('puts go instructions outside of Gather tag', function() {
+        var call;
+        call = new VoiceCall(app, res);
+        call.update(req, res);
+        call.acceptInput(1, 'dupa', false);
+        call.setTimeout(200);
+        call.say("This is dupa");
+        call.goTo('someplace else');
         return console.log(res.text);
       });
     };

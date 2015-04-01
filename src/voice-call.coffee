@@ -41,6 +41,7 @@ class VoiceCall
 		@digits = @get req, 'Digits'
 		@status = @get req, 'CallStatus'
 		@duration = @get req, 'CallDuration'
+		@outerBody = undefined
 		@body = []
 		@response = {Response: @body}
 		@res = res
@@ -56,6 +57,7 @@ class VoiceCall
 		if required
 			@body.push {Say: @app.settings.noInputMessage}
 			@body.push {Redirect: "#{@position}?repeat=#{next}"}
+		@outerBody = @body
 		@body = gather
 
 	setTimeout: (timeout)->
@@ -97,6 +99,8 @@ class VoiceCall
 		@output(@res, @response)
 
 	goTo: (target)->
+		if @outerBody
+			@body = @outerBody
 		@body.push {Redirect: target}
 		@go()
 

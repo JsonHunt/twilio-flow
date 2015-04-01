@@ -58,6 +58,7 @@
       this.digits = this.get(req, 'Digits');
       this.status = this.get(req, 'CallStatus');
       this.duration = this.get(req, 'CallDuration');
+      this.outerBody = void 0;
       this.body = [];
       this.response = {
         Response: this.body
@@ -88,6 +89,7 @@
           Redirect: this.position + "?repeat=" + next
         });
       }
+      this.outerBody = this.body;
       return this.body = gather;
     };
 
@@ -152,6 +154,9 @@
     };
 
     VoiceCall.prototype.goTo = function(target) {
+      if (this.outerBody) {
+        this.body = this.outerBody;
+      }
       this.body.push({
         Redirect: target
       });
