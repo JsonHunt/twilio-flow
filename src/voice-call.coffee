@@ -8,16 +8,16 @@ class VoiceCall
 		@to = @get req, 'To'
 		@direction = @get req, 'Direction'
 		@time_started = new Date()
-		@caller_id @get req, 'CallerName'
+		@caller_id = @get req, 'CallerName'
 
-		@fromCity	@get req, 'FromCity'
-		@fromState @get req, 'FromState'
-		@fromZip @get req, 'FromZip'
-		@fromCountry @get req, 'FromCountry'
-		@toCity @get req, 'ToCity'
-		@toState @get req, 'ToState'
-		@toZip @get req, 'ToZip'
-		@toCountry @get req, 'ToCountry'
+		@fromCity =	@get req, 'FromCity'
+		@fromState = @get req, 'FromState'
+		@fromZip = @get req, 'FromZip'
+		@fromCountry = @get req, 'FromCountry'
+		@toCity = @get req, 'ToCity'
+		@toState = @get req, 'ToState'
+		@toZip = @get req, 'ToZip'
+		@toCountry = @get req, 'ToCountry'
 
 	output: (res, x)->
 		xres = xml x,
@@ -74,6 +74,7 @@ class VoiceCall
 	say: (text,voice)->
 		if !voice
 			voice = @app.settings.voice
+		console.log voice
 		@body.push
 			Say: text
 			_attr:

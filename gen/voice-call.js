@@ -15,15 +15,15 @@
       this.to = this.get(req, 'To');
       this.direction = this.get(req, 'Direction');
       this.time_started = new Date();
-      this.caller_id(this.get(req, 'CallerName'));
-      this.fromCity(this.get(req, 'FromCity'));
-      this.fromState(this.get(req, 'FromState'));
-      this.fromZip(this.get(req, 'FromZip'));
-      this.fromCountry(this.get(req, 'FromCountry'));
-      this.toCity(this.get(req, 'ToCity'));
-      this.toState(this.get(req, 'ToState'));
-      this.toZip(this.get(req, 'ToZip'));
-      this.toCountry(this.get(req, 'ToCountry'));
+      this.caller_id = this.get(req, 'CallerName');
+      this.fromCity = this.get(req, 'FromCity');
+      this.fromState = this.get(req, 'FromState');
+      this.fromZip = this.get(req, 'FromZip');
+      this.fromCountry = this.get(req, 'FromCountry');
+      this.toCity = this.get(req, 'ToCity');
+      this.toState = this.get(req, 'ToState');
+      this.toZip = this.get(req, 'ToZip');
+      this.toCountry = this.get(req, 'ToCountry');
     }
 
     VoiceCall.prototype.output = function(res, x) {
@@ -111,6 +111,7 @@
       if (!voice) {
         voice = this.app.settings.voice;
       }
+      console.log(voice);
       return this.body.push({
         Say: text,
         _attr: {
