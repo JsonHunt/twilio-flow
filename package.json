@@ -1,14 +1,23 @@
 {
-	"name": "twilio-flow",
-	"version": "1.0.10",
-	"description": "Makes writing twilio voice apps easier",
-	"main": "gen/twilio-flow.js",
-	"scripts": {
-		"test": "test"
-	},
-	"author": "JsonHunt",
-	"license": "ISC",
-	"dependencies": {
-		"xml": "^1.0.0"
-	}
+  "name": "twilio-flow",
+  "version": "1.0.0",
+  "description": "Express middleware for creating interactive voice systems with Twilio platform",
+  "main": "twilio-flow-app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://repo4.mydevil.net/git/priv/walkorec/twilio-flow"
+  },
+  "keywords": [
+    "twilio",
+    "ivr"
+  ],
+  "author": "Lukasz Korzeniowski",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "twilio": "^2.9.0"
+  }
 }

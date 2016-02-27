@@ -1,9 +1,0 @@
-{
-	"timeout": 4000,
-	"commands": [
-		"src/**/*.coffee  : coffee -c --map -o gen{relPathNoRoot} {relPath}/{filename}",
-		"test/**/*.coffee  : coffee -c {relPath}/{filename}",
-		"src/**/*.jade    : jade -P {relPath}/{filename} -o gen/{relPathNoRoot}",
-		"src/**/*.styl    : stylus {relPath}/{filename} --out gen/{relPathNoRoot}"
-	]
-}
